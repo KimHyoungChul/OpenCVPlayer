@@ -14,6 +14,4 @@ public class GlobalConfig {
 
     // public static final String INPUT_VIDEO_PATH = "rtsp://184.72.239.149/vod/mp4://BigBuckBunny_175k.mov";
 
-    // 输出的流地址  目前仅支持rtmp
-    public static final String OUTPUT_STREAM_PATH = "rtmp://push-ws1.csslcloud.net/src/40F645371FE5559E9C33DC5901307461?token=jXbhgsOR";
 }
