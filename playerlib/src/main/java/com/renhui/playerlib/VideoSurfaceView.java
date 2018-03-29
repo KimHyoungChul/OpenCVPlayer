@@ -3,6 +3,7 @@ package com.renhui.playerlib;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -21,18 +22,23 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     private FFmpegPlayer mPlayer;
     private OnPreparedListener onPreparedListener;
 
+    private Context mContext;
+
     public VideoSurfaceView(Context context) {
         super(context);
+        mContext = context;
         init();
     }
 
     public VideoSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mContext = context;
         init();
     }
 
     public VideoSurfaceView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mContext = context;
         init();
     }
 
@@ -64,8 +70,13 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     }
 
     @Override
+    protected void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        initLayout(mPlayer.getWidth(), mPlayer.getHeight());
+    }
+
+    @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        Log.v(TAG, "surfaceCreated...");
         initLayout(mPlayer.getWidth(), mPlayer.getHeight());
         play();
         if (onPreparedListener != null)
@@ -79,7 +90,6 @@ public class VideoSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        Log.v(TAG, "surfaceDestroyed...");
         mPlayer.pause();
     }
 

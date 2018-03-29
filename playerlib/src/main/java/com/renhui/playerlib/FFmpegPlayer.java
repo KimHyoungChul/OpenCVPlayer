@@ -87,8 +87,8 @@ public class FFmpegPlayer extends Player {
             this.rate = Math.round(1000d / mFrameGrabber.getFrameRate());
             video_width = mFrameGrabber.getImageWidth();
             video_height = mFrameGrabber.getImageHeight();
-            Log.v("111", String.format("width=%d, height=%d, delay=%d, frame lenght=%d", mFrameGrabber.getImageWidth(), mFrameGrabber.getImageHeight(), rate, mFrameGrabber.getLengthInFrames()));
-            Log.v("111", "AudioChannels=" + mFrameGrabber.getAudioChannels() + ", AudioBitrate=" + mFrameGrabber.getSampleRate());
+            Log.e("111", String.format("width=%d, height=%d, delay=%d, frame lenght=%d", mFrameGrabber.getImageWidth(), mFrameGrabber.getImageHeight(), rate, mFrameGrabber.getLengthInFrames()));
+            Log.e("111", "AudioChannels=" + mFrameGrabber.getAudioChannels() + ", AudioBitrate=" + mFrameGrabber.getSampleRate());
         } catch (FrameGrabber.Exception e) {
             e.printStackTrace();
         }
@@ -220,12 +220,12 @@ public class FFmpegPlayer extends Player {
 
     @Override
     public int getWidth() {
-        return mFrameGrabber.getImageWidth();
+        return video_width;
     }
 
     @Override
     public int getHeight() {
-        return mFrameGrabber.getImageHeight();
+        return video_height;
     }
 
     @Override
